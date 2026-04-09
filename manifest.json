@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Lavendar Epilepsy Guard",
+  "version": "0.1.0",
+  "description": "Watches page content in real time and places a warning banner over media that may trigger photosensitive epilepsy.",
+  "permissions": [],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Lavendar Epilepsy Guard"
+  }
+}

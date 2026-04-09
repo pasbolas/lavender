@@ -1,0 +1,40 @@
+.lavendar-epilepsy-wrap {
+  position: relative !important;
+  max-width: 100%;
+}
+
+.lavendar-epilepsy-wrap > img,
+.lavendar-epilepsy-wrap > video,
+.lavendar-epilepsy-wrap > canvas,
+.lavendar-epilepsy-wrap > svg {
+  display: block;
+}
+
+.lavendar-epilepsy-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2147483647;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #fff;
+  background: linear-gradient(135deg, rgba(126, 24, 24, 0.96), rgba(48, 6, 6, 0.92));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+}
+
+.lavendar-epilepsy-banner strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 2px;
+  letter-spacing: 0.02em;
+}
+
+.lavendar-epilepsy-outline {
+  outline: 3px solid rgba(168, 33, 33, 0.75);
+  outline-offset: 0;
+}
