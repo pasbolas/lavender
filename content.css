@@ -1,40 +1,51 @@
-.lavendar-epilepsy-wrap {
+.lavendar-guard-wrap {
   position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+
+.lavendar-guard-wrap > img,
+.lavendar-guard-wrap > video,
+.lavendar-guard-wrap > iframe,
+.lavendar-guard-wrap > canvas,
+.lavendar-guard-wrap > svg {
+  display: block;
   max-width: 100%;
 }
 
-.lavendar-epilepsy-wrap > img,
-.lavendar-epilepsy-wrap > video,
-.lavendar-epilepsy-wrap > canvas,
-.lavendar-epilepsy-wrap > svg {
-  display: block;
-}
-
-.lavendar-epilepsy-banner {
+.lavendar-guard-cover {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   z-index: 2147483647;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 12px;
   box-sizing: border-box;
-  padding: 10px 12px;
-  font-family: Arial, sans-serif;
+  overflow: hidden;
+  border: 4px solid #e53935;
+  border-radius: inherit;
+  background: rgba(229, 57, 53, 0.14);
+  backdrop-filter: blur(16px) saturate(0.72);
+  -webkit-backdrop-filter: blur(16px) saturate(0.72);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.24),
+    0 0 0 1px rgba(126, 16, 14, 0.18);
+}
+
+.lavendar-guard-reason {
+  margin: 0;
+  max-width: min(100%, 320px);
+  padding: 8px 12px;
+  border: 2px solid #e53935;
+  border-radius: 999px;
+  background: rgba(120, 8, 8, 0.9);
+  box-shadow: 0 8px 16px rgba(96, 16, 16, 0.18);
+  font-family: "Segoe UI", Arial, sans-serif;
   font-size: 12px;
+  font-weight: 700;
   line-height: 1.4;
-  color: #fff;
-  background: linear-gradient(135deg, rgba(126, 24, 24, 0.96), rgba(48, 6, 6, 0.92));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-  pointer-events: none;
-}
-
-.lavendar-epilepsy-banner strong {
-  display: block;
-  font-size: 13px;
-  margin-bottom: 2px;
-  letter-spacing: 0.02em;
-}
-
-.lavendar-epilepsy-outline {
-  outline: 3px solid rgba(168, 33, 33, 0.75);
-  outline-offset: 0;
+  color: #fff7f7;
+  text-wrap: balance;
 }

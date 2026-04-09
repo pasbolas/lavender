@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lavendar Content Filter</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <h1>Lavendar</h1>
+      <p class="description">Turn protection on or off for the tabs you visit.</p>
+
+      <label class="toggle-card" for="guard-toggle">
+        <div>
+          <p class="toggle-label">Protection</p>
+          <p class="toggle-status" id="toggle-status">On</p>
+        </div>
+        <span class="toggle-shell">
+          <input id="guard-toggle" type="checkbox" />
+          <span class="toggle-track" aria-hidden="true"></span>
+        </span>
+      </label>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

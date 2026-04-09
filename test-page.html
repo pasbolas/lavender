@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lavendar Extension Test Page</title>
+    <style>
+      :root {
+        --bg: #fff0b8;
+        --panel: #fffaf0;
+        --panel-strong: #fff6e5;
+        --text: #251716;
+        --muted: #584443;
+        --accent: #ff7a59;
+        --accent-deep: #e14b33;
+        --accent-soft: #ffd966;
+        --accent-blue: #8dd8ff;
+        --accent-mint: #b7f28b;
+        --line: #2f201d;
+        --line-soft: #2f201d;
+        --display: "Comic Sans MS", "Marker Felt", "Trebuchet MS", "Avenir Next", sans-serif;
+        --body-font: "Trebuchet MS", "Avenir Next", "Segoe UI", sans-serif;
+        --ui-font: "Trebuchet MS", "Avenir Next", "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: var(--body-font);
+        color: var(--text);
+        background-color: var(--bg);
+        background-image:
+          radial-gradient(circle at 24px 24px, rgba(255, 255, 255, 0.6) 0 6px, transparent 6px),
+          radial-gradient(circle at 0 0, rgba(255, 122, 89, 0.12) 0 140px, transparent 140px),
+          radial-gradient(circle at 100% 8%, rgba(141, 216, 255, 0.4) 0 150px, transparent 150px),
+          linear-gradient(180deg, #ffe77d 0%, #fff1bb 35%, #fff8de 100%);
+        background-size: 48px 48px, auto, auto, auto;
+      }
+
+      main {
+        width: min(1240px, calc(100% - 36px));
+        margin: 0 auto;
+        padding: 34px 0 56px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin: 0 0 14px;
+        padding: 7px 14px;
+        border: 3px solid var(--line);
+        border-radius: 999px;
+        font-family: var(--ui-font);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--line);
+        background: var(--accent-soft);
+        box-shadow: 4px 4px 0 rgba(47, 32, 29, 0.2);
+        transform: rotate(-2deg);
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-family: var(--display);
+        font-size: clamp(2rem, 5vw, 4rem);
+        line-height: 0.94;
+        letter-spacing: -0.03em;
+      }
+
+      p {
+        margin: 0;
+        line-height: 1.6;
+        font-size: 1.03rem;
+      }
+
+      .intro {
+        position: relative;
+        padding: 30px;
+        border: 4px solid var(--line);
+        border-radius: 24px;
+        background:
+          radial-gradient(circle at top right, rgba(255, 255, 255, 0.7), transparent 30%),
+          repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.18) 0 10px, transparent 10px 20px),
+          var(--panel-strong);
+        box-shadow: 12px 12px 0 rgba(47, 32, 29, 0.2);
+      }
+
+      .intro p + p {
+        margin-top: 10px;
+        color: var(--muted);
+      }
+
+      .toolbar {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+
+      button {
+        border: 3px solid var(--line);
+        border-radius: 16px;
+        padding: 11px 16px;
+        font: 700 0.95rem/1.1 var(--ui-font);
+        letter-spacing: 0.01em;
+        color: var(--line);
+        background: linear-gradient(180deg, #ff9f73, var(--accent));
+        box-shadow: 5px 5px 0 rgba(47, 32, 29, 0.2);
+        cursor: pointer;
+        transition:
+          transform 120ms ease,
+          box-shadow 120ms ease,
+          background-color 120ms ease;
+      }
+
+      button:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 7px 7px 0 rgba(47, 32, 29, 0.2);
+      }
+
+      button:focus-visible {
+        outline: 4px solid rgba(255, 122, 89, 0.35);
+        outline-offset: 2px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        margin-top: 28px;
+      }
+
+      .card {
+        padding: 22px;
+        border-radius: 22px;
+        border: 4px solid var(--line-soft);
+        background:
+          radial-gradient(circle at top left, rgba(255, 255, 255, 0.65), transparent 34%),
+          var(--panel);
+        box-shadow: 10px 10px 0 rgba(47, 32, 29, 0.16);
+      }
+
+      .card h2 {
+        margin: 0 0 8px;
+        font-family: var(--display);
+        font-size: 1.22rem;
+        letter-spacing: -0.02em;
+      }
+
+      .card p {
+        color: var(--muted);
+        margin-bottom: 14px;
+      }
+
+      .card:nth-child(4n + 1) {
+        background-color: #fff9ea;
+      }
+
+      .card:nth-child(4n + 2) {
+        background-color: #ffe7ec;
+      }
+
+      .card:nth-child(4n + 3) {
+        background-color: #e7f7ff;
+      }
+
+      .card:nth-child(4n + 4) {
+        background-color: #efffd9;
+      }
+
+      .demo-box,
+      .demo-media,
+      .demo-video {
+        width: 100%;
+        min-height: 260px;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 4px solid var(--line);
+        background: #fffaf3;
+      }
+
+      .demo-video {
+        display: block;
+        height: 320px;
+        object-fit: cover;
+        background: #111;
+      }
+
+      .flash-panel {
+        background:
+          conic-gradient(from 180deg, #ffefef, #f11f1f, #fff9c4, #dcfffb, #ffefef);
+        animation: strobe-test 0.36s infinite steps(2, end);
+      }
+
+      .pulse-panel {
+        background:
+          radial-gradient(circle at 30% 30%, #fff, #ffd166 18%, transparent 19%),
+          radial-gradient(circle at 70% 70%, #fff, #ef476f 18%, transparent 19%),
+          linear-gradient(135deg, #1d3557, #457b9d, #a8dadc);
+        animation: rapidPulse 0.85s infinite;
+      }
+
+      .static-preview {
+        display: block;
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+      }
+
+      .expectations {
+        margin: 18px 0 0;
+        padding-left: 22px;
+        color: var(--muted);
+        list-style-type: disc;
+        line-height: 1.55;
+      }
+
+      .expectations li + li {
+        margin-top: 6px;
+      }
+
+      .giphy-frame {
+        width: 100%;
+        height: 320px;
+        border: 4px solid var(--line);
+        border-radius: 18px;
+        background: #111;
+      }
+
+      .source-canvas {
+        display: none;
+      }
+
+      .feed {
+        margin-top: 28px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .feed-item {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: 18px;
+        align-items: center;
+        padding: 18px;
+        border-radius: 22px;
+        border: 4px solid var(--line-soft);
+        background: #fffaf0;
+        box-shadow: 8px 8px 0 rgba(47, 32, 29, 0.14);
+      }
+
+      .feed-thumb {
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: 18px;
+        border: 4px solid var(--line);
+        background:
+          repeating-linear-gradient(
+            45deg,
+            #ffffff 0 18px,
+            #f54e42 18px 36px,
+            #ffffff 36px 54px,
+            #1e88e5 54px 72px
+          );
+      }
+
+      .feed-thumb.flash,
+      .dynamic-flash {
+        animation: blink 0.28s infinite;
+      }
+
+      .label {
+        display: inline-block;
+        margin-bottom: 6px;
+        padding: 5px 10px;
+        border: 3px solid var(--line);
+        border-radius: 999px;
+        font-family: var(--ui-font);
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background: var(--accent-soft);
+        box-shadow: 3px 3px 0 rgba(47, 32, 29, 0.15);
+      }
+
+      .dynamic-zone {
+        margin-top: 28px;
+        padding: 18px;
+        border: 4px dashed var(--line);
+        border-radius: 24px;
+        background:
+          radial-gradient(circle at 16px 16px, rgba(255, 255, 255, 0.65) 0 4px, transparent 4px),
+          #e7f7ff;
+        background-size: 30px 30px;
+      }
+
+      .dynamic-zone h2 {
+        margin: 0 0 10px;
+        font-family: var(--display);
+        letter-spacing: -0.02em;
+      }
+
+      @keyframes strobe-test {
+        0% {
+          filter: brightness(0.8) contrast(1);
+        }
+        50% {
+          filter: brightness(1.65) contrast(1.7);
+        }
+        100% {
+          filter: brightness(0.75) contrast(1);
+        }
+      }
+
+      @keyframes rapidPulse {
+        0% {
+          transform: scale(1);
+          filter: saturate(1);
+        }
+        50% {
+          transform: scale(1.04);
+          filter: saturate(1.9);
+        }
+        100% {
+          transform: scale(1);
+          filter: saturate(1);
+        }
+      }
+
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.1;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .feed-item {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="intro">
+        <p class="eyebrow">Extension lab note</p>
+        <h1>Lavendar Test Page</h1>
+        <p>
+          This page is meant for controlled extension testing. It includes true flashing
+          surfaces, generated video clips with different motion intensity, calmer motion that
+          should stay visible, and Giphy embeds so you can check the extension against a
+          real-world source.
+        </p>
+        <p>
+          Keep screen brightness low while testing, and close the tab if anything feels
+          uncomfortable.
+        </p>
+        <ul class="expectations">
+          <li>The fast flashing block, blinking feed card, color-flash video, flashing Giphy GIF, and flashing Giphy embed should blur.</li>
+          <li>The fast-motion demo video should blur, while the slow-motion demo video should stay visible.</li>
+          <li>The pulsing panel, static image, and calmer Giphy GIF and embed should stay visible.</li>
+          <li>The inserted flashing feed item should get picked up shortly after it appears.</li>
+        </ul>
+        <div class="toolbar">
+          <button id="insert-feed-item" type="button">Insert flashing feed item</button>
+          <button id="insert-safe-item" type="button">Insert normal feed item</button>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Fast flashing block</h2>
+          <p>Should be picked up through fast CSS animation timing.</p>
+          <div class="demo-box flash-panel" aria-label="flash warning sample"></div>
+        </article>
+
+        <article class="card">
+          <h2>Pulsing animated panel</h2>
+          <p>This moves quickly, but it should not be treated like a flash or strobe.</p>
+          <div class="demo-box pulse-panel"></div>
+        </article>
+
+        <article class="card">
+          <h2>Static image control</h2>
+          <p>This card keeps a flashy-looking filename but should stay unblurred because it is static.</p>
+          <img
+            class="demo-media static-preview"
+            alt="rapid blinking sample image"
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'><rect width='800' height='500' fill='%2311122b'/><rect x='0' y='0' width='400' height='500' fill='%23f94144'/><rect x='400' y='0' width='400' height='500' fill='%23f9c74f'/><circle cx='210' cy='250' r='120' fill='%23ffffff'/><circle cx='580' cy='250' r='120' fill='%2300bbf9'/><text x='50%25' y='88%25' text-anchor='middle' fill='white' font-size='54' font-family='Arial'>flash demo image</text></svg>#blink"
+          />
+        </article>
+
+        <article class="card">
+          <h2>Fast-motion video</h2>
+          <p>This generated clip has large frame-to-frame movement and should now blur.</p>
+          <video
+            class="demo-video"
+            id="fast-motion-video"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+          <canvas class="source-canvas" id="fast-motion-source" width="640" height="360"></canvas>
+        </article>
+
+        <article class="card">
+          <h2>Slow-motion video control</h2>
+          <p>This generated clip changes more gently and should usually remain visible.</p>
+          <video
+            class="demo-video"
+            id="slow-motion-video"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+          <canvas class="source-canvas" id="slow-motion-source" width="640" height="360"></canvas>
+        </article>
+
+        <article class="card">
+          <h2>Color-flash video</h2>
+          <p>This demo rapidly swaps saturated colors with a mostly stable layout and should blur.</p>
+          <video
+            class="demo-video"
+            id="color-flash-video"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+          <canvas class="source-canvas" id="color-flash-source" width="640" height="360"></canvas>
+        </article>
+
+        <article class="card">
+          <h2>Giphy flashing embed</h2>
+          <p>Uses a real Giphy iframe so the extension can be checked against embed content.</p>
+          <iframe
+            class="giphy-frame"
+            src="https://giphy.com/embed/IJFmVrZr85OEA6iryd"
+            title="Flashing Giphy embed"
+            allowfullscreen
+          ></iframe>
+        </article>
+
+        <article class="card">
+          <h2>Giphy flashing GIF</h2>
+          <p>This uses a direct Giphy GIF URL so the animated-image path can be tested.</p>
+          <img
+            class="demo-media static-preview"
+            src="https://media4.giphy.com/media/IJFmVrZr85OEA6iryd/giphy.gif"
+            alt="Flashing Giphy GIF test"
+          />
+        </article>
+
+        <article class="card">
+          <h2>Giphy calmer loop</h2>
+          <p>This real Giphy loop should stay visible unless it actually contains rapid flashes.</p>
+          <iframe
+            class="giphy-frame"
+            src="https://giphy.com/embed/OsnHmZ6n1xNdD0b3RH"
+            title="Calmer Giphy embed"
+            allowfullscreen
+          ></iframe>
+        </article>
+
+        <article class="card">
+          <h2>Giphy calmer GIF</h2>
+          <p>This direct Giphy GIF should stay visible unless the animation is truly intense.</p>
+          <img
+            class="demo-media static-preview"
+            src="https://media4.giphy.com/media/OsnHmZ6n1xNdD0b3RH/giphy.gif"
+            alt="Calmer Giphy GIF test"
+          />
+        </article>
+      </section>
+
+      <section class="feed" id="feed">
+        <article class="feed-item">
+          <div class="feed-thumb flash" aria-label="flashing media preview"></div>
+          <div>
+            <span class="label">Live feed</span>
+            <p>Feed card with a flashing preview block to simulate dynamic social content.</p>
+          </div>
+        </article>
+
+        <article class="feed-item">
+          <div class="feed-thumb"></div>
+          <div>
+            <span class="label">Normal item</span>
+            <p>This one should stay unflagged so you can compare behavior side by side.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="dynamic-zone">
+        <h2>Dynamic insert zone</h2>
+        <p id="status">No new items added yet.</p>
+      </section>
+    </main>
+
+    <script>
+      const feed = document.getElementById("feed");
+      const status = document.getElementById("status");
+      const flashingButton = document.getElementById("insert-feed-item");
+      const safeButton = document.getElementById("insert-safe-item");
+
+      setupMotionDemo("fast-motion-source", "fast-motion-video", {
+        stripeSpeed: 780,
+        orbSpeed: 560,
+        jitter: 56,
+        pulse: 0.22,
+        label: "FAST"
+      });
+
+      setupMotionDemo("slow-motion-source", "slow-motion-video", {
+        stripeSpeed: 120,
+        orbSpeed: 72,
+        jitter: 8,
+        pulse: 0.05,
+        label: "SLOW"
+      });
+
+      setupColorFlashDemo("color-flash-source", "color-flash-video");
+
+      flashingButton.addEventListener("click", () => {
+        const item = document.createElement("article");
+        item.className = "feed-item";
+        item.innerHTML = `
+          <div class="feed-thumb dynamic-flash" aria-label="rapid flicker preview"></div>
+          <div>
+            <span class="label">Inserted trigger</span>
+            <p>This card was added after load to verify the mutation observer catches it.</p>
+          </div>
+        `;
+        feed.prepend(item);
+        status.textContent = "Inserted one flashing feed item.";
+      });
+
+      safeButton.addEventListener("click", () => {
+        const item = document.createElement("article");
+        item.className = "feed-item";
+        item.innerHTML = `
+          <div class="feed-thumb" aria-label="static preview"></div>
+          <div>
+            <span class="label">Inserted safe item</span>
+            <p>This card gives you a control case that should usually remain untouched.</p>
+          </div>
+        `;
+        feed.prepend(item);
+        status.textContent = "Inserted one normal feed item.";
+      });
+
+      window.setTimeout(() => {
+        flashingButton.click();
+      }, 1800);
+
+      function setupMotionDemo(canvasId, videoId, config) {
+        const canvas = document.getElementById(canvasId);
+        const video = document.getElementById(videoId);
+        const context = canvas.getContext("2d");
+        const stream = canvas.captureStream(24);
+
+        video.srcObject = stream;
+        void video.play().catch(() => {});
+
+        function renderFrame(timestamp) {
+          const seconds = timestamp / 1000;
+          const width = canvas.width;
+          const height = canvas.height;
+          const stripeOffset = (seconds * config.stripeSpeed) % width;
+          const orbX = (width / 2) + Math.sin(seconds * 1.8) * config.orbSpeed * 0.35;
+          const orbY = (height / 2) + Math.cos(seconds * 1.25) * config.orbSpeed * 0.18;
+          const jitter = Math.sin(seconds * 7) * config.jitter;
+          const pulse = 1 + Math.sin(seconds * 5.5) * config.pulse;
+
+          context.clearRect(0, 0, width, height);
+          context.fillStyle = "#08111f";
+          context.fillRect(0, 0, width, height);
+
+          for (let index = -2; index < 8; index += 1) {
+            const x = ((index * 110) + stripeOffset + jitter) % (width + 140) - 70;
+            context.fillStyle = index % 2 === 0 ? "#ff6b35" : "#4cc9f0";
+            context.fillRect(x, 0, 72, height);
+          }
+
+          context.save();
+          context.translate(orbX, orbY);
+          context.rotate(seconds * (config.orbSpeed / 180));
+          context.scale(pulse, pulse);
+          context.fillStyle = "#f8f9fa";
+          context.fillRect(-110, -30, 220, 60);
+          context.fillStyle = "#0b132b";
+          context.fillRect(-24, -110, 48, 220);
+          context.restore();
+
+          context.fillStyle = "rgba(255, 255, 255, 0.92)";
+          context.font = "bold 44px Arial";
+          context.fillText(config.label, 24, 54);
+
+          requestAnimationFrame(renderFrame);
+        }
+
+        requestAnimationFrame(renderFrame);
+      }
+
+      function setupColorFlashDemo(canvasId, videoId) {
+        const canvas = document.getElementById(canvasId);
+        const video = document.getElementById(videoId);
+        const context = canvas.getContext("2d");
+        const stream = canvas.captureStream(18);
+        const palettes = [
+          { bg: "#b8ff6b", face: "#f3a6da", eye: "#4d4dff", mouth: "#ffe066", dot: "#111111" },
+          { bg: "#ff6bd6", face: "#7cf4ff", eye: "#1616ff", mouth: "#b8ff6b", dot: "#111111" },
+          { bg: "#6fffe9", face: "#ff8fab", eye: "#ffea00", mouth: "#b5179e", dot: "#111111" }
+        ];
+
+        video.srcObject = stream;
+        void video.play().catch(() => {});
+
+        function renderFrame(timestamp) {
+          const seconds = timestamp / 1000;
+          const width = canvas.width;
+          const height = canvas.height;
+          const palette = palettes[Math.floor(seconds * 7) % palettes.length];
+
+          context.fillStyle = palette.bg;
+          context.fillRect(0, 0, width, height);
+
+          for (let y = 12; y < height; y += 20) {
+            for (let x = 12; x < width; x += 20) {
+              context.fillStyle = palette.dot;
+              context.beginPath();
+              context.arc(x + ((y / 20) % 2) * 4, y, 2.4, 0, Math.PI * 2);
+              context.fill();
+            }
+          }
+
+          context.fillStyle = palette.face;
+          context.beginPath();
+          context.moveTo(170, 70);
+          context.lineTo(250, 110);
+          context.lineTo(330, 55);
+          context.lineTo(360, 145);
+          context.lineTo(450, 110);
+          context.lineTo(425, 210);
+          context.lineTo(495, 270);
+          context.lineTo(405, 295);
+          context.lineTo(390, 340);
+          context.lineTo(315, 302);
+          context.lineTo(235, 332);
+          context.lineTo(205, 262);
+          context.lineTo(130, 235);
+          context.lineTo(170, 170);
+          context.closePath();
+          context.fill();
+
+          context.fillStyle = palette.eye;
+          context.beginPath();
+          context.ellipse(215, 195, 52, 40, -0.28, 0, Math.PI * 2);
+          context.ellipse(298, 203, 62, 46, 0.18, 0, Math.PI * 2);
+          context.fill();
+
+          context.fillStyle = "#ffffff";
+          context.beginPath();
+          context.arc(206, 197, 10, 0, Math.PI * 2);
+          context.arc(286, 200, 11, 0, Math.PI * 2);
+          context.fill();
+
+          context.fillStyle = palette.mouth;
+          context.beginPath();
+          context.moveTo(170, 272);
+          context.quadraticCurveTo(247, 315, 320, 282);
+          context.lineTo(300, 342);
+          context.quadraticCurveTo(224, 354, 182, 316);
+          context.closePath();
+          context.fill();
+
+          context.strokeStyle = "#111111";
+          context.lineWidth = 8;
+          context.stroke();
+
+          requestAnimationFrame(renderFrame);
+        }
+
+        requestAnimationFrame(renderFrame);
+      }
+    </script>
+  </body>
+</html>

@@ -1,9 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Lavendar Epilepsy Guard",
-  "version": "0.1.0",
-  "description": "Watches page content in real time and places a warning banner over media that may trigger photosensitive epilepsy.",
-  "permissions": [],
+  "name": "Lavendar Cover Guard",
+  "version": "0.2.0",
+  "description": "Detects potentially flashing or intense motion content and places a protective cover over it.",
+  "permissions": [
+    "storage"
+  ],
   "host_permissions": [
     "<all_urls>"
   ],
@@ -22,6 +24,7 @@
     }
   ],
   "action": {
-    "default_title": "Lavendar Epilepsy Guard"
+    "default_title": "Lavendar Cover Guard",
+    "default_popup": "popup.html"
   }
 }
